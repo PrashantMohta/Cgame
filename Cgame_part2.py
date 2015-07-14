@@ -59,18 +59,18 @@ while not done:
                 lin_temp=random.choice([0,1])
                 screenbuff[lin_temp][-1]=OBSTACLE_CHAR
                 game["obstacle"]+=1
-##        elif screenbuff[0][-2] != OBSTACLE_CHAR:
-##            if game["obstacle"]<int(game["level"]) and random.choice([0,1]):
-##                lin_temp=random.choice([0,1])
-##                if(lin_temp==1):
-##                    screenbuff[lin_temp][-1]=OBSTACLE_CHAR
-##                    game["obstacle"]+=1
-##        elif screenbuff[1][-2] != OBSTACLE_CHAR:
-##            if game["obstacle"]<int(game["level"]) and random.choice([0,1]):
-##                lin_temp=random.choice([0,1])
-##                if(lin_temp==0):
-##                    screenbuff[lin_temp][-1]=OBSTACLE_CHAR
-##                    game["obstacle"]+=1
+        elif screenbuff[0][-2] != OBSTACLE_CHAR:
+            if game["obstacle"]<int(game["level"]) and random.choice([0,1]):
+                lin_temp=random.choice([0,1])
+                if(lin_temp==1):
+                    screenbuff[lin_temp][-1]=OBSTACLE_CHAR
+                    game["obstacle"]+=1
+        elif screenbuff[1][-2] != OBSTACLE_CHAR:
+            if game["obstacle"]<int(game["level"]) and random.choice([0,1]):
+                lin_temp=random.choice([0,1])
+                if(lin_temp==0):
+                    screenbuff[lin_temp][-1]=OBSTACLE_CHAR
+                    game["obstacle"]+=1
             
 
     #check for collision
