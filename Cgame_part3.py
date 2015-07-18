@@ -3,6 +3,12 @@ import mlcd,pygame,time,random
 PLAYER_CHAR=">"
 OBSTACLE_CHAR="|"
 
+STARTSCREEN_TEXT=[["Avoid Obstables","Space for more"],
+                  ["Controls:space","for moving and"],
+                  ["Esc for quitting","the game"],
+                  ["To begin",">Press Space"],
+                  ]
+
 screenbuff=[[" "," "," "," "," "," "," "," "," "," "," "," "],
             [" "," "," "," "," "," "," "," "," "," "," "," "]]
 
@@ -20,14 +26,41 @@ def keypress(): #get keypresses
         elif event.type == pygame.KEYUP and event.key == pygame.K_ESCAPE:
             keys["quit"] = True
 
+def startscreen():
+    global player,game,keys,startstate
+    done=False
+    while not done:
+        if(startstate<len(STARTSCREEN_TEXT)):
+            mlcd.draw(STARTSCREEN_TEXT[startstate])
+        else:
+            done=True
+        keypress()
+        if keys["space"]:
+            startstate+=1
+        if keys["quit"]:
+            startstate=len(STARTSCREEN_TEXT)+1
     
     
+def endscreen():
+    global player,game,keys
+    done=False
+    while not done:
+        mlcd.draw(["score="+str(player["score"])+"spd="+str(game["speed"]),"  -PrashantMohta"])
+        keypress()
+        if keys["quit"]:
+            done=True
+    pygame.quit()
+    exit()
 
+    
 done=False
 #initialize mlcd as 16x2 character lcd
 mlcd.init(16,2)
 lasttime=time.time()
 curtime=0.0
+startstate=0
+#show start screen
+startscreen()
 
 while not done:
     curtime=time.time()
@@ -97,6 +130,7 @@ while not done:
     if keys["quit"]:
         print("game quit")
         done=True
+endscreen()  
 pygame.quit()
     
     
